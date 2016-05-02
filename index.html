@@ -11,6 +11,7 @@
   <link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  
   <style type="text/css">
       body {
       font: 400 15px/1.8 Lato, sans-serif;
@@ -219,6 +220,11 @@
 <div id="band" class="container text-center">
   <h3>KREMATORIUM THE BAND</h3>
   <p><em>We love music!</em></p>
+  
+  <audio autoplay="autoplay" controls="controls" loop="true" hidden="hidden">
+    <source src="audio/oniket_prantor.mp3" type="audio/mpeg"></source>
+  </audio>
+  
   <p>We have created a fictional band website. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
   <br>
   <div class="row">
@@ -308,7 +314,7 @@
       <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Fan ? Drop a note → </p>
       <p><span class="glyphicon glyphicon-map-marker"></span> Dhanmondi 32 , Dhaka , BD</p>
       <p><span class="glyphicon glyphicon-phone"></span> Phone: +8801708917014</p>
-      <p><span class="glyphicon glyphicon-envelope"></span> Email: mail@krematorium.com</p>	   
+      <p><span class="glyphicon glyphicon-envelope"></span> Email: mail@krematorium.com</p>    
     </div>
     <div class="col-md-8">
       <div class="row">
@@ -325,7 +331,7 @@
         <div class="col-md-12 form-group">
           <button class="btn pull-right" type="submit">Send</button>
         </div>
-      </div>	
+      </div>  
     </div>
   </div>
   <br>
@@ -357,24 +363,44 @@
 <!-- Add Google Maps -->
 <script src="http://maps.googleapis.com/maps/api/js"></script>
 <script>
-var myCenter = new google.maps.LatLng(23.753090, 90.376929);
+var BSDI = new google.maps.LatLng(23.753090, 90.376929);
+var DPI = new google.maps.LatLng(23.750911, 90.378696);
+var myCenter = new google.maps.LatLng(23.752458, 90.377719);
+
 
 function initialize() {
 var mapProp = {
 center:myCenter,
-zoom:20,
+zoom:17,
 scrollwheel:false,
-draggable:false,
+draggable:true,
 mapTypeId:google.maps.MapTypeId.ROADMAP
 };
 
 var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
 
 var marker = new google.maps.Marker({
-position:myCenter,
+position:BSDI,animation:google.maps.Animation.BOUNCE
+});
+
+
+var marker1 = new google.maps.Marker({
+position:DPI,animation:google.maps.Animation.BOUNCE
 });
 
 marker.setMap(map);
+marker1.setMap(map);
+
+var infowindow = new google.maps.InfoWindow({
+  content:"Bangladesh Skill Development Institute"
+  });
+
+var infowindow1 = new google.maps.InfoWindow({
+  content:"Daffodil Polytechnic Institute"
+  });
+
+infowindow.open(map,marker);
+infowindow1.open(map,marker1);
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
